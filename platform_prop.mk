@@ -44,6 +44,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	vendor.audio.hw.aac.encoder=true \
 	vendor.audio.noisy.broadcast.delay=600 \
 	vendor.audio.offload.buffer.size.kb=64 \
+	vendor.audio.offload.track.enable=true \
 	vendor.audio.offload.gapless.enabled=true \
 	vendor.audio.offload.multiaac.enable=true \
 	vendor.audio.offload.multiple.enabled=false \
