@@ -333,8 +333,8 @@ firmware_directories /vendor/firmware_mnt/image/
 /dev/block/platform/soc/1d84000.ufshc/by-name/frp       0600   system     system
 /dev/block/platform/soc/7c4000.sdhci/by-name/frp        0600   system     system
 
-# Add device block for FRP with soc.0
-/dev/block/platform/soc.0/7824900.sdhci/by-name/config    0600   system     system
+# This is temporary while using SD card for initial bring-up
+/dev/block/platform/soc/8804000.sdhci/by-name/frp       0600   system     system
 
 # sys-fs display
 /sys/class/graphics/fb*     hpd                      0664    system  graphics
