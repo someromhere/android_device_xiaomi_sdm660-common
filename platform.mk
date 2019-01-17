@@ -133,17 +133,13 @@ PRODUCT_PACKAGES += \
 
 # DRM
 PRODUCT_PACKAGES += \
-	android.hardware.drm@1.0-impl:32 \
+	android.hardware.drm@1.0-impl \
 	android.hardware.drm@1.0-service \
 	android.hardware.drm@1.1-service.clearkey
 
 # Exclude TOF sensor from InputManager
 PRODUCT_COPY_FILES += \
 	$(PLATFORM_PATH)/configs/excluded-input-devices.xml:system/etc/excluded-input-devices.xml
-
-# FBE support
-PRODUCT_COPY_FILES += \
-	$(PLATFORM_PATH)/rootdir/bin/init.qti.qseecomd.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.qti.qseecomd.sh
 
 # Fingerprint feature
 PRODUCT_PACKAGES += \
@@ -333,8 +329,7 @@ PRODUCT_PACKAGES += \
 	init.qcom.post_boot.sh \
 	init.qcom.sh \
 	init.qcom.usb.sh \
-	init.qti.fm.sh \
-	init.qti.qseecomd.sh
+	init.qti.fm.sh
 
 PRODUCT_PACKAGES += \
 	init.msm.usb.configfs.rc \
@@ -447,5 +442,8 @@ PRODUCT_PACKAGES += \
 	KCal
 
 # Wi-Fi Display
+PRODUCT_PACKAGES += \
+    libnl
+
 PRODUCT_BOOT_JARS += \
     WfdCommon
