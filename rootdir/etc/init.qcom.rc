@@ -55,6 +55,12 @@ on init
 on post-fs
     chmod 0755 /sys/kernel/debug/tracing
 
+    chown 0660 /sys/class/leds/red/brightness
+    chown 0660 /sys/class/leds/red/blink
+    chown system system /sys/class/leds/red/brightness
+    chown system system /sys/class/leds/red/blink
+    chown system system /sys/class/leds/red/duty_pcts
+
 on early-boot
     # set RLIMIT_MEMLOCK to 64MB
     setrlimit 8 67108864 67108864
@@ -227,6 +233,9 @@ on boot
     mkdir /persist/display 0770 system graphics
     mkdir /mnt/vendor/persist/display 0770 system graphics
 
+    # Create hvdcp_opti directory
+    mkdir /mnt/vendor/persist/hvdcp_opti 0770 root system
+
     # Create vpp directory
     mkdir /mnt/vendor/persist/vpp 0770 media media
 
@@ -261,13 +270,16 @@ on post-fs-data
     # Create folder of camera
     mkdir /data/vendor/camera 0770 camera camera
 
-    #Create folder for mm-qcamera-daemon
+    # Create folder for mm-qcamera-daemon
     mkdir /data/misc/camera 0770 camera camera
+
+    mkdir /data/media 0770 media_rw media_rw
+    chown media_rw media_rw /data/media
 
     # Create directory for apps access via QTEEConnector
     mkdir /data/vendor/qtee 0770 system system
 
-    #Create directory for tftp
+    # Create directory for tftp
     mkdir /data/vendor/tombstones 0771 system system
 
     mkdir /data/vendor/ramdump 0771 root system
@@ -280,9 +292,6 @@ on post-fs-data
     mkdir /data/vendor/wifi/hostapd 0770 wifi wifi
     mkdir /data/vendor/wifi/hostapd/ctrl 0770 wifi wifi
     mkdir /data/vendor/wifi/wpa_supplicant 0770 wifi wifi
-    mkdir /data/vendor/mac_addr 0770 system wifi
-    mkdir /data/vendor/wlan_logs 0770 system wifi
-    mkdir /data/vendor/wlan_logs 0770 system wifi
     mkdir /data/vendor/wifi/wpa 0770 wifi wifi
     mkdir /data/vendor/wifi/wpa/sockets 0770 wifi wifi
 
@@ -472,11 +481,6 @@ on property:sys.boot_completed=1
     #WDSP FW boot sysfs node used by STHAL
     chown media audio /sys/kernel/wdsp0/boot
     chown media audio /sys/kernel/wcd_cpe0/fw_name
-    restorecon /sys/tp_selftest/syn_selftest_result
-    chown system system /sys/tp_selftest/syn_selftest_result
-    chmod 0777 /sys/tp_selftest/syn_selftest_result
-    chown system system /sys/class/ant_class/ant_state
-    chmod 0644 /sys/class/ant_class/ant_state
 
 # corefile limit
 on property:persist.debug.trace=1
@@ -532,7 +536,7 @@ service vendor.ipacm /system/vendor/bin/ipacm
     user radio
     group radio inet
     disabled
-	writepid /dev/cpuset/system-background/tasks
+    writepid /dev/cpuset/system-background/tasks
 
 service vendor.dataqti /system/vendor/bin/qti
     class main
@@ -584,7 +588,7 @@ service vendor.cnss-daemon /system/vendor/bin/cnss-daemon -n -l
 	writepid /dev/cpuset/system-background/tasks
 
 on property:sys.powerctl=*
-	stop vendor.cnss-daemon
+    stop vendor.cnss-daemon
 
 service vendor.loc_launcher /system/vendor/bin/loc_launcher
     class late_start
@@ -599,6 +603,7 @@ on property:crypto.driver.load=1
 service vendor.qcom-sh /vendor/bin/init.qcom.sh
     class late_start
     user root
+    group root system radio
     oneshot
 
 on property:ro.vendor.ril.mbn_copy_completed=1
@@ -607,6 +612,7 @@ on property:ro.vendor.ril.mbn_copy_completed=1
 service vendor.qcom-post-boot /vendor/bin/init.qcom.post_boot.sh
     class late_start
     user root
+    group root system wakelock graphics
     disabled
     oneshot
 
