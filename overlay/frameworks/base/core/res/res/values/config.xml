@@ -158,25 +158,13 @@
 	<string name="config_mms_user_agent" translatable="false">Android-Mms/2.0</string>
 
 	<!-- MMS user agent prolfile url -->
-	<string name="config_mms_user_agent_profile_url" translatable="false"
-			>http://www.google.com/oha/rdf/ua-profile-kila.xml</string>
+	<string name="config_mms_user_agent_profile_url" translatable="false">http://www.google.com/oha/rdf/ua-profile-kila.xml</string>
 
-	<!-- Configuration to restart radio upon PDP_DEACTIVATE with
-		 error cause as Regular deactivation(36). -->
-	<!--
-	<bool name="config_radio_reset_on_regular_deactivation">false</bool>
-	-->
 	<!-- Flag indicating if the speed up audio on mt call code should be executed -->
 	<bool name="config_speed_up_audio_on_mt_calls">true</bool>
 
 	<!-- Whether camera shutter sound is forced or not  (country specific). -->
 	<bool name="config_camera_sound_forced">false</bool>
-
-	<!-- Configuration to enable non-default PDP during IWLAN
-	<bool name="config_feature_iwlan_enabled">true</bool> -->
-
-	<!-- Is the device capable of supporting digital pen
-	<bool name="config_digitalPenCapable">true</bool> -->
 
 	<!-- Flag specifying whether VoLTE is available on device -->
 	<bool name="config_device_volte_available">true</bool>
@@ -244,7 +232,7 @@
 	-->
 	<bool name="config_powerDecoupleInteractiveModeFromDisplay">true</bool>
 
-	    <!-- Whether device has support for auto brightness in doze mode -->
+	<!-- Whether device has support for auto brightness in doze mode -->
 	<bool name="config_allowAutoBrightnessWhileDozing">true</bool>
 
 	<!-- Indicate whether closing the lid causes the device to go to sleep and opening
@@ -387,7 +375,7 @@
 	<!-- Amount of time it takes for the light sensor to warm up in milliseconds.
 		  For this time after the screen turns on, the Power Manager
 		  will not debounce light sensor readings -->
-	<integer name="config_lightSensorWarmupTime">200</integer>
+	<integer name="config_lightSensorWarmupTime">0</integer>
 
 	<!-- Whether notify fingerprint client of successful cancelled authentication -->
 	<bool name="config_notifyClientOnFingerprintCancelSuccess">true</bool>
@@ -411,7 +399,13 @@
          config_proximityCheckOnWake must be true. -->
     <bool name="config_proximityCheckOnFingerprintWake">true</bool>
 
-		<!-- Time to give to the proximity sensor before toggling the flashlight with the Power button.
+    <!-- Enable system navigation keys. -->
+    <bool name="config_supportSystemNavigationKeys">true</bool>
+
+    <!-- Specify if the fingerprint hardware support gestures-->
+    <bool name="config_fingerprintSupportsGestures">true</bool>
+
+	<!-- Time to give to the proximity sensor before toggling the flashlight with the Power button.
          Set to -1 to disable the proximity sensor check at all-->
     <integer name="config_flashlightProximityTimeout">-1</integer>
 
