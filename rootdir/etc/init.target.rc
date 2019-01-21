@@ -137,9 +137,6 @@ on boot
     chmod 660 /sys/devices/platform/kcal_ctrl.0/kcal_min
     chmod 660 /sys/devices/platform/kcal_ctrl.0/kcal
 
-    chmod 0660 /proc/nvt_wake_gesture
-    chown system system /proc/nvt_wake_gesture
-
     # Wifi firmware reload path
     chown wifi wifi /sys/module/wlan/parameters/fwpath
 
