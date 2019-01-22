@@ -91,9 +91,9 @@ PRODUCT_PACKAGES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-	android.frameworks.displayservice@1.0_32 \
 	android.hardware.camera.provider@2.4-impl:32 \
 	android.hardware.camera.provider@2.4-service \
+    camera.device@1.0-impl \
 	camera.device@3.2-impl \
 	libxml2 \
 	Snap
@@ -105,6 +105,7 @@ PRODUCT_PACKAGES += \
 
 # Display
 PRODUCT_PACKAGES += \
+	android.frameworks.displayservice@1.0_32 \
 	android.hardware.graphics.allocator@2.0-impl:64 \
 	android.hardware.graphics.allocator@2.0-service \
 	android.hardware.graphics.composer@2.1-impl:64 \
@@ -121,7 +122,8 @@ PRODUCT_PACKAGES += \
 	libtinyxml \
 	memtrack.sdm660 \
 	libgpu_tonemapper \
-	libsdm_core
+	libsdm_core \
+	libvulkan
 
 PRODUCT_PACKAGES += \
 	android.hardware.configstore@1.0-service \
