@@ -169,17 +169,6 @@ on property:sys.thermallct.isinvideo=1
 on property:sys.thermallct.isinvideo=0
     write /sys/class/thermal/thermal_message/sconfig 0
 
-# add charge_logger service for dump charge message
-service charge_logger /vendor/bin/charge_logger
-   class last_start
-   user system
-   group system system wakelock
-   disabled
-   oneshot
-
-on property:sys.boot_completed=1
-    start charge_logger
-
 service vendor.qseecomd /vendor/bin/qseecomd
    class core
    user root
@@ -294,7 +283,6 @@ service vendor.hvdcp_opti /system/vendor/bin/hvdcp_opti
     user root
     group system wakelock
 	writepid /dev/cpuset/system-background/tasks
-
 
 #add for displayfeature
 service openad /system/vendor/bin/displayf_bin s 1
