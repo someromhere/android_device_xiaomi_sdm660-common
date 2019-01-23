@@ -551,7 +551,6 @@ service vendor.sensors /vendor/bin/sensors.qti
     class core
     user system
     group system
-    disabled
     writepid /dev/cpuset/system-background/tasks
 
 on property:ro.vendor.use_data_netmgrd=false
