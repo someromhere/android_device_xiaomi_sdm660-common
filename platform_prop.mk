@@ -248,7 +248,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Video encoding
 PRODUCT_PROPERTY_OVERRIDES += \
-	vendor.vidc.dec.enable.downscalar=1 \
+	vendor.vidc.dec.enable.downscalar=0 \
 	vendor.vidc.enc.disable_bframes=1 \
 	vendor.vidc.enc.disable.pq=false \
 	vidc.enc.dcvs.extra-buff-count=2 \
