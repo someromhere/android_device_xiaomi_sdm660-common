@@ -673,6 +673,17 @@ on charger
     load_system_props
     start vendor.qcom-post-boot
 
+#ant check change permission
+    chown system system /sys/class/ant_class/ant_state
+    chmod 0644 /sys/class/ant_class/ant_state
+
+#lct add video status
+on property:sys.thermal.isinvideo=1
+    write /sys/class/power_supply/battery/device/thermalvideo 1
+
+on property:sys.thermal.isinvideo=0
+    write /sys/class/power_supply/battery/device/thermalvideo 0
+
 #Mixed HWC versions among targets
 on property:init.svc.surfaceflinger=restarting
     stop  vendor.hwcomposer-2-1
@@ -711,9 +722,13 @@ service bugreport /system/bin/dumpstate -d -p -B -z -o /data/user_de/0/com.andro
     oneshot
     keycodes 114 115 116
 
-#Set gpu available frequencies property
+# Set gpu available frequencies property
 on property:vendor.gpu.available_frequencies=*
     setprop ro.vendor.gpu.available_frequencies ${vendor.gpu.available_frequencies}
+
+# Add cts verify flag	
+    on property:sys.gyro.sensorname=*
+    setprop vendor.camera.gyro.sensorname ${sys.gyro.sensorname}
 
 service vendor.audio-hal-2-0 /vendor/bin/hw/android.hardware.audio@2.0-service
     override

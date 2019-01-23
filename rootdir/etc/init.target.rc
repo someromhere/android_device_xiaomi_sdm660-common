@@ -351,12 +351,6 @@ on property:persist.sys.display_gamma=1
 on property:persist.sys.display_gamma=2
     write /sys/class/graphics/fb0/msm_fb_gamma 2
 
-on property:sys.antgpio=0
-    write /sys/class/ant_class/ant_state 0
-
-on property:sys.antgpio=1
-    write /sys/class/ant_class/ant_state 1
-
 on property:persist.vendor.camera.HAL3.enabled=0
 	stop vendor.camera-provider-2-4
 	stop cameraserver

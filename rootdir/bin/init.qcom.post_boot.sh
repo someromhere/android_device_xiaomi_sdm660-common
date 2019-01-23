@@ -2474,6 +2474,12 @@ case "$target" in
             # re-enable thermal and BCL hotplug
             echo 1 > /sys/module/msm_thermal/core_control/enabled
 
+            #Add-begin-HMI_M6100_A01-422,lijiang@longcheer.com,2018-10-12
+            #Enable input boost configuration
+            echo "0:1401600" > /sys/module/cpu_boost/parameters/input_boost_freq
+            echo 40 > /sys/module/cpu_boost/parameters/input_boost_ms
+            #Add-end-HMI_M6100_A01-422
+
             # Set Memory parameters
             configure_memory_parameters
 
