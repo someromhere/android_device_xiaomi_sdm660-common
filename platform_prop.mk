@@ -200,7 +200,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	persist.vendor.radio.custom_ecc=1 \
 	persist.vendor.radio.rat_on=combine \
 	persist.radio.schd.cache=3500 \
-	rild.libpath=/system/vendor/lib64/libril-qc-qmi-1.so \
+	rild.libpath=/system/vendor/lib64/libril-qc-hal-qmi.so \
 	ro.com.android.dataroaming=true \
 	ro.telephony.default_network=22,20 \
 	ro.vendor.use_data_netmgrd=true \
@@ -259,6 +259,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	persist.debug.wfd.enable=1 \
 	persist.sys.wfd.virtual=0 \
 	vendor.video.disable.ubwc=1
+
+# Thermal configs path
+PRODUCT_PROPERTY_OVERRIDES += \
+	sys.thermal.data.path=/data/vendor/thermal/
 
 # Wipower
 PRODUCT_PROPERTY_OVERRIDES += \

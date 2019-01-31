@@ -50,13 +50,12 @@ on fs
     chown root system /mnt/vendor/persist
     chmod 0771 /mnt/vendor/persist
     mkdir /mnt/vendor/persist/data 0700 system system
-    mkdir /mnt/vendor/persist/wlan_bt 0700 system system
-    mkdir /mnt/vendor/persist/audio 0755 system system
     mkdir /mnt/vendor/persist/bms 0700 root system
     restorecon_recursive /mnt/vendor/persist
     write /sys/kernel/boot_adsp/boot 1
-    mkdir /persist/wlan_bt 0700 system system
-    mkdir /persist/audio 0755 system system
+
+    chmod 0664 /sys/class/thermal/thermal_message/sconfig
+    chown system system /sys/class/thermal/thermal_message/sconfig
 
 on post-fs
     start vendor.qseecomd
@@ -158,6 +157,28 @@ on property:init.svc.vendor.per_mgr=running
 
 on property:sys.powerctl=*
     stop vendor.per_proxy
+on property:sys.thermallct.isincall=1
+    write /sys/class/power_supply/battery/device/thermalcall 1
+
+on property:sys.thermallct.isincall=0
+    write /sys/class/power_supply/battery/device/thermalcall 0
+
+on property:sys.thermallct.isinvideo=1
+    write /sys/class/thermal/thermal_message/sconfig 12
+
+on property:sys.thermallct.isinvideo=0
+    write /sys/class/thermal/thermal_message/sconfig 0
+
+# add charge_logger service for dump charge message
+service charge_logger /vendor/bin/charge_logger
+   class last_start
+   user system
+   group system system wakelock
+   disabled
+   oneshot
+
+on property:sys.boot_completed=1
+    start charge_logger
 
 service vendor.qseecomd /vendor/bin/qseecomd
    class core
@@ -185,7 +206,7 @@ service vendor.adsprpcd_root /vendor/bin/adsprpcd
    group media
    writepid /dev/cpuset/system-background/tasks
 
-service vendor.adsprpcd /system/vendor/bin/adsprpcd audiopd
+service vendor.adsprpcd /vendor/bin/adsprpcd audiopd
    class main
    user media
    group media
@@ -203,7 +224,7 @@ service vendor.imsdatadaemon /system/vendor/bin/imsdatadaemon
     socket ims_datad stream 0660 system radio
     group system wifi radio inet log diag
     disabled
-	writepid /dev/cpuset/system-background/tasks
+    writepid /dev/cpuset/system-background/tasks
 
 service vendor.energy-awareness /system/vendor/bin/energy-awareness
     class main
