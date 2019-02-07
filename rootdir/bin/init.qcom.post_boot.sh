@@ -2408,6 +2408,7 @@ case "$target" in
 
             # online CPU0
             echo 1 > /sys/devices/system/cpu/cpu0/online
+	    cpu0_min=`cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies | cut -f 1 -d " "`
             # configure governor settings for little cluster
             echo "interactive" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
             echo 1 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_sched_load
@@ -2420,13 +2421,14 @@ case "$target" in
             echo "85 1747200:95" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads
             echo 39000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time
             echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/max_freq_hysteresis
-            echo 633600 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+            echo $cpu0_min > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
             echo 1 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/ignore_hispeed_on_notif
             echo 1 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/fast_ramp_down
             chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
             chown system /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
             # online CPU4
             echo 1 > /sys/devices/system/cpu/cpu4/online
+	    cpu4_min=`cat /sys/devices/system/cpu/cpu4/cpufreq/scaling_available_frequencies | cut -f 1 -d " "`
             # configure governor settings for big cluster
             echo "interactive" > /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor
             echo 1 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_sched_load
@@ -2439,7 +2441,7 @@ case "$target" in
             echo "85 1401600:90 2150400:95" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads
             echo 39000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time
             echo 59000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/max_freq_hysteresis
-            echo 1113600 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
+            echo $cpu4_min > /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
             echo 1 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/ignore_hispeed_on_notif
             echo 1 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/fast_ramp_down
             chmod 0664 /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
@@ -2573,6 +2575,7 @@ case "$target" in
 
             # online CPU0
             echo 1 > /sys/devices/system/cpu/cpu0/online
+	    cpu0_min=`cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies | cut -f 1 -d " "`
             # configure governor settings for Big cluster(CPU0 to CPU3)
             echo "interactive" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
             echo 1 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_sched_load
@@ -2585,11 +2588,12 @@ case "$target" in
             echo "85 1344000:80" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads
             echo 39000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time
             echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/max_freq_hysteresis
-            echo 787200 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+            echo $cpu0_min > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
             echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/ignore_hispeed_on_notif
 
             # online CPU4
             echo 1 > /sys/devices/system/cpu/cpu4/online
+	    cpu4_min=`cat /sys/devices/system/cpu/cpu4/cpufreq/scaling_available_frequencies | cut -f 1 -d " "`
             # configure governor settings for Little cluster(CPU4 to CPU7)
             echo "interactive" > /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor
             echo 1 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_sched_load
@@ -2602,7 +2606,7 @@ case "$target" in
             echo "85 1094400:80" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads
             echo 39000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time
             echo 0 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/max_freq_hysteresis
-            echo 614400 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
+            echo $cpu4_min > /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
             echo 0 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/ignore_hispeed_on_notif
 
             # bring all cores online
