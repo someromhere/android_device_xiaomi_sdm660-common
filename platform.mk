@@ -36,7 +36,7 @@ DEVICE_PACKAGE_OVERLAYS := device/xiaomi/sdm660-common/overlay
 
 # Build Fingerprint
 PRODUCT_BUILD_PROP_OVERRIDES += \
-		PRIVATE_BUILD_DESC="taimen-user 9 PQ2A.190305.002 5240760 release-keys"
+	PRIVATE_BUILD_DESC="taimen-user 9 PQ2A.190305.002 5240760 release-keys"
 
 BUILD_FINGERPRINT := google/taimen/taimen:9/PQ2A.190305.002/5240760:user/release-keys
 
@@ -406,10 +406,6 @@ PRODUCT_PACKAGES += \
 	android.hardware.thermal@1.0-impl \
 	android.hardware.thermal@1.0-service \
 	thermal.sdm660
-
-# ThermalController app
-PRODUCT_PACKAGES += \
-	ThermalController
 
 # Touchscreen
 PRODUCT_PACKAGES += \
