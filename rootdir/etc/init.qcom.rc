@@ -436,7 +436,7 @@ on post-fs-data
     chmod 0660 /data/vendor/radio/db_check_done
 
     copy /vendor/etc/ad_calib.cfg /data/vendor/display/ad_calib.cfg
-    chmod 0644 /data/vendor/display/ad_calib.c
+    chmod 0644 /data/vendor/display/ad_calib.cfg
 
     # qti-logkit data
     mkdir /data/vendor/qti-logkit/ 0771 system system

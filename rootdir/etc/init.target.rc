@@ -1,4 +1,4 @@
-# Copyright (c) 2013-2017, The Linux Foundation. All rights reserved.
+# Copyright (c) 2013-2018, The Linux Foundation. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are
@@ -80,8 +80,7 @@ on fs
 on post-fs
     start vendor.qseecomd
     exec - system system -- /vendor/bin/init.qti.qseecomd.sh
-    # Update dm-verity state and set partition.*.verified properties
-    verity_update_state
+    write /dev/ipa 1
 
 on init
     write /sys/module/qpnp_rtc/parameters/poweron_alarm 1
@@ -278,7 +277,7 @@ service vendor.ims_rtp_daemon /system/vendor/bin/ims_rtp_daemon
 service vendor.imsrcsservice /system/vendor/bin/imsrcsd
    class main
    user system
-   group radio diag inet log
+   group radio diag inet log wakelock
    writepid /dev/cpuset/system-background/tasks
 
 # add for HMI_L8866_A01-502: begin
@@ -320,9 +319,9 @@ on charger
     setprop debug.charger.on 1
 
 service vendor.hvdcp_opti /system/vendor/bin/hvdcp_opti
-    class main
-    user root
-    group system wakelock
+     class main
+     user root
+     group system wakelock
 	writepid /dev/cpuset/system-background/tasks
 
 
