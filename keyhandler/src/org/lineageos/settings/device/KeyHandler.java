@@ -19,7 +19,9 @@ package org.lineageos.settings.device;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.provider.Settings;
 import android.view.KeyEvent;
 
 import com.android.internal.os.DeviceKeyHandler;
@@ -30,8 +32,6 @@ public class KeyHandler implements DeviceKeyHandler {
     private static final int SCANCODE_JASMINE_DOWN = 108;
     private static final int SCANCODE_JASMINE_LEFT = 105;
     private static final int SCANCODE_JASMINE_RIGHT = 106;
-
-    private static final int SCANCODE_CLOVER_DOWN = 172;
 
     private static final String FP_SWIPE_DIRECTION = "FP_SWIPE_DIRECTION";
     private static final int FP_SWIPE_UP = 0;
@@ -59,7 +59,6 @@ public class KeyHandler implements DeviceKeyHandler {
                 swipeDirection = FP_SWIPE_UP;
                 break;
 
-            case SCANCODE_CLOVER_DOWN:
             case SCANCODE_JASMINE_DOWN:
                 swipeDirection = FP_SWIPE_DOWN;
                 break;

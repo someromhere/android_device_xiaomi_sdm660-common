@@ -109,7 +109,6 @@ PRODUCT_PACKAGES += \
 	android.hardware.camera.provider@2.4-impl:32 \
 	android.hardware.camera.provider@2.4-service \
 	camera.device@3.2-impl \
-	libxml2 \
 	Snap \
 	vendor.qti.hardware.camera.device@1.0 \
 	vendor.qti.hardware.camera.device@1.0_vendor
@@ -165,14 +164,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES += \
 	frameworks/native/data/etc/android.hardware.fingerprint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.fingerprint.xml
-
-# FM packages
-# PRODUCT_PACKAGES += \
-# 	libqcomfm_jni \
-# 	android.hardware.broadcastradio@1.0-impl \
-# 	FM2 \
-# 	qcom.fmradio \
-# 	qcom.fmradio.xml
 
 # Framework RRO
 PRODUCT_ENFORCE_RRO_TARGETS := \
