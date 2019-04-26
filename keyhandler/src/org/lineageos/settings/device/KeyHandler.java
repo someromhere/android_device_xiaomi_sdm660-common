@@ -40,15 +40,15 @@ public class KeyHandler implements DeviceKeyHandler {
     private static final int FP_SWIPE_RIGHT = 3;
 
     private static PackageManager sPackageManager;
-    private Context mContext;
+    private final Context mContext;
 
     public KeyHandler(Context context) {
         sPackageManager = context.getPackageManager();
-        this.mContext = context;
+        mContext = context;
     }
 
     @Override
-    public KeyEvent handleKeyEvent(KeyEvent event) {
+    public boolean handleKeyEvent(KeyEvent event) {
         int scanCode = event.getScanCode();
         int action = event.getAction();
 
@@ -89,6 +89,6 @@ public class KeyHandler implements DeviceKeyHandler {
                 }
             }
         }
-        return event;
+        return false;
     }
 }
