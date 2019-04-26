@@ -76,18 +76,11 @@ public class KeyHandler implements DeviceKeyHandler {
                 break;
         }
 
-        if (swipeDirection >= 0) {
-            if (action == KeyEvent.ACTION_UP) {
-                Intent startAction = new Intent()
-                        .setComponent(new ComponentName("org.lineageos.settings.device",
-                                "org.lineageos.settings.device.StartAction"))
-                        .putExtra(FP_SWIPE_DIRECTION, swipeDirection);
-
-                if (startAction.resolveActivity(sPackageManager) != null) {
-                    mContext.startService(startAction);
-                }
-            }
+    @Override
+    public Intent isActivityLaunchEvent(KeyEvent event) {
+        if (event.getAction() != KeyEvent.ACTION_UP) {
+            return null;
         }
-        return false;
+        return null;
     }
 }
