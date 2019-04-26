@@ -83,5 +83,4 @@ public class KeyHandler implements DeviceKeyHandler {
         }
         return null;
     }
-  }
 }
