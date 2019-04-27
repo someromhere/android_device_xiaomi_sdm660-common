@@ -447,8 +447,8 @@ PRODUCT_PACKAGES += \
 	XiaomiParts
 
 # KeyHandler
-PRODUCT_PACKAGES += \
-	org.lineageos.keyhandler
+#PRODUCT_PACKAGES += \
+#	org.lineageos.keyhandler
 
 # Wi-Fi Display
 PRODUCT_BOOT_JARS += \
